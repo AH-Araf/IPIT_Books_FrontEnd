@@ -1,11 +1,17 @@
+// SingleBook.js
+import { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import Marquee from "react-fast-marquee";
-import { useLoaderData } from "react-router-dom";
 import QRCode from "qrcode.react";
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SingleBook = () => {
+    // const history = useHistory();
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
     const bookData = useLoaderData();
     const {
-        // _id,
         bookName,
         image,
         Writer,
@@ -14,8 +20,36 @@ const SingleBook = () => {
         NumberofPage,
         BookType,
         LastUpdate,
-        Description
+        Description,
+        _id
     } = bookData;
+
+    const addToCart = () => {
+        const newItem = {
+            bookName,
+            image,
+            Writer,
+            Price,
+            Publishers,
+            NumberofPage,
+            BookType,
+            LastUpdate,
+            Description,
+            _id
+
+        };
+        const updatedCart = [...cartItems, newItem];
+        setCartItems(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to Cart!',
+            text: `${bookName} has been added to your cart.`,
+            showConfirmButton: false,
+            timer: 3000 // Automatically close after 2 seconds
+        });
+    };
 
     // Inline style for background image
     const backgroundImageStyle = {
@@ -57,7 +91,7 @@ const SingleBook = () => {
                 </Marquee>
             </div>
 
-            <div className="flex justify-center items-center gap-10 mt-8">
+            <div className="flex justify-center items-center gap-10 mt-8 a p-10 rounded-xl mx-10">
                 <div className="e rounded-xl">
                     <img className="h-72 w-52 rounded-xl border-2 " src={image} alt="" />
                 </div>
@@ -69,7 +103,6 @@ const SingleBook = () => {
                     <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Number of Pages:</span> {NumberofPage}</p>
                     <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Book Type:</span> {BookType}</p>
                     <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Last Update:</span> {LastUpdate}</p>
-                    {/* <p>qr code-{Description}</p> */}
                     <div className="mt-4">
                         <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Scan for Read:</span></p>
                         <div className="">
@@ -77,6 +110,9 @@ const SingleBook = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='flex justify-center mt-10'>
+                <button className='e btn btn-error text-white text-lg' onClick={addToCart}>Add to Cart</button>
             </div>
         </div>
     );

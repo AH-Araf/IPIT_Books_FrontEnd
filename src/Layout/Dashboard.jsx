@@ -3,7 +3,6 @@ import axios from "axios";
 import { NavLink, Outlet } from "react-router-dom";
 import { HiOutlineHome } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
-import { FaCarRear } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthProvider";
 
 import { FaBookMedical } from "react-icons/fa";
@@ -13,6 +12,7 @@ import { IoStatsChartSharp } from "react-icons/io5";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { FaBookReader } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Dashboard = () => {
 
@@ -72,7 +72,7 @@ const Dashboard = () => {
                             ) : (
                                 <>
                                     <li><NavLink to="/dashboard/DashboardHome"><CgProfile /> User Home</NavLink></li>
-                                    <li><NavLink to="/dashboard/OrderdCars"><FaCarRear /> Order Cars</NavLink></li>
+                                        <li><NavLink to="/dashboard/MyOrders"><FaShoppingCart /> My Orders</NavLink></li>
                                     <li><NavLink to="/"><HiOutlineHome /> Back To Home</NavLink></li>
 
                                 </>

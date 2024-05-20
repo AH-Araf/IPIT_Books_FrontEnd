@@ -27,7 +27,6 @@ const NavBar = () => {
                 <NavLink to='/books' active={location.pathname === '/books' || location.pathname === '/book/:id'}>Books</NavLink>
                 <NavLink to='/contact' active={location.pathname === '/contact'}>Contact</NavLink>
                 <NavLink to='/about' active={location.pathname === '/about'}>About</NavLink>
-                <NavLink to='/blog' active={location.pathname === '/blog'}>Blog</NavLink>
                 {/* <NavLink to='/login' active={location.pathname === '/login'}>Login</NavLink> */}
                 {
                     user ? <>

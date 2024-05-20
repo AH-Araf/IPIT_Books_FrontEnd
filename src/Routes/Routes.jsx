@@ -17,6 +17,9 @@ import Stats from "../Pages/Dashboard/AdminDashboard/Stats";
 import SingleBook from "../Pages/Books/SingleBook";
 import Message from "../Pages/Dashboard/AdminDashboard/Message";
 import ManageAuthor from "../Pages/Dashboard/AdminDashboard/ManageAuthor";
+import MyOrders from "../Pages/Dashboard/UserDashboard/MyOrders";
+import Cart from "../Pages/Cart/Cart";
+import Bkash from "../Pages/Cart/Bkash";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +63,16 @@ export const router = createBrowserRouter([
                 element: <Register />,
             },
 
+            {
+                path: "/cart", 
+                element: <Cart />,
+            },
+
+            {
+                path: "/bkash",
+                element: <Bkash />,
+            },
+
 
         ]
     },
@@ -95,6 +108,13 @@ export const router = createBrowserRouter([
             {
                 path: "ManageAuthor",
                 element: <ManageAuthor />
+            },
+
+
+            // User
+            {
+                path: "MyOrders",
+                element: <MyOrders />
             },
         ]
     }

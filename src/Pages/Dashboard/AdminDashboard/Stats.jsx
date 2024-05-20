@@ -1,6 +1,7 @@
 
 import BarC from './ChartsForBooks/BarC';
 import LineC from './ChartsForBooks/LineC';
+import OrderChart from './ChartsForBooks/OrderChart';
 import PieC from './ChartsForBooks/PieC';
 
 const Stats = () => {
@@ -13,6 +14,8 @@ const Stats = () => {
                 <BarC />
                 <LineC />
             </div>
+
+            <OrderChart/>
             
         </div>
     );
