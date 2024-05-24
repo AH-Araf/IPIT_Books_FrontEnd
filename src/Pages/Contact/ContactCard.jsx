@@ -8,29 +8,23 @@ import { FaInstagram } from "react-icons/fa6";
 import { RiLinkedinFill } from "react-icons/ri";
 import { MdInsertLink } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { addMessage } from '../../api/contact';
 
 const ContactCard = () => {
-    const { register, handleSubmit,  } = useForm();
+    const { register, handleSubmit, } = useForm();
     // const navigate = useNavigate();
 
     const handleAddMessage = data => {
-        const certificateData = {
+        const messageData = {
             YourName: data.YourName,
             PhoneNumber: data.PhoneNumber,
             Email: data.Email,
             Message: data.Message,
         };
 
-        fetch('http://localhost:5000/message', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(certificateData)
-        })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result);
+        addMessage(messageData)
+            .then(data => {
+                console.log(data);
                 Swal.fire({
                     icon: 'success',
                     title: 'Message Sent Successfully',
@@ -51,9 +45,9 @@ const ContactCard = () => {
 
     return (
         <div data-aos="fade-up" data-aos-duration="2000" className='flex justify-center items-center gap-20 bg-emerald-200 p-5 mx-40 mt-32 e rounded-2xl' >
-            
+
             <div className='text-center'>
-                
+
                 <div className='bg-white p-2 rounded-lg e'>
                     <p className='font-bold text-xl text-emerald-600 mb-2'>Contact Us</p>
                     <img className='h-56 w-56 rounded-lg' src={logo} alt="" />

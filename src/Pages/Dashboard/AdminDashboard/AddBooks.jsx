@@ -1,163 +1,149 @@
-
-
-
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import { toast } from 'react-toastify';
 import Swal from "sweetalert2";
+import { imageUpload } from "../../../api/utils";
+import Loader from "../../Shared/Loader/Loader";
+import { postBook } from "../../../api/books";
+import InputForm from "../../../ReuseableComponents/Form/InputForm";
+import ImageForm from "../../../ReuseableComponents/Form/ImageForm";
+import SelectionForm from "../../../ReuseableComponents/Form/SelectionForm";
+
 
 const AddBooks = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
-    const imageHostKey = `771e92fe5bf3b4553445891d6b44f4a1`;
-    // const { user } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleAddBook = data => {
+    const handleAddBook = async (data) => {
+        setIsLoading(true); // Show loader
         const image = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
-                    const intern = {
-                        bookName: data.bookName,
-                        image: imgData.data.url,
-                        Writer: data.Writer,
-                        Price: data.Price,
-                        Publishers: data.Publishers,
-                        NumberofPage: data.NumberofPage,
-                        BookType: data.BookType,
-                        LastUpdate: data.LastUpdate,
-                        Description: data.Description,
-                    };
+        try {
+            const imgData = await imageUpload(image);
 
-                    fetch('http://localhost:5000/postBook', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify(intern)
-                    })
-                        .then(res => res.json())
-                        .then(result => {
-                            console.log(result);
+            if (imgData.success) {
+                const bookDetails = {
+                    bookName: data.bookName,
+                    image: imgData.data.url,
+                    Writer: data.Writer,
+                    Price: data.Price,
+                    Publishers: data.Publishers,
+                    NumberofPage: data.NumberofPage,
+                    BookType: data.BookType,
+                    LastUpdate: data.LastUpdate,
+                    Description: data.Description,
+                };
 
-                            // Use SweetAlert for a nicer notification
-                            Swal.fire({
-                                title: 'Added Successfully',
-                                icon: 'success',
-                                showClass: {
-                                    popup: 'animate__animated animate__fadeInDown'
-                                },
-                                hideClass: {
-                                    popup: 'animate__animated animate__fadeOutUp'
-                                }
-                            });
+                const result = await postBook(bookDetails); // Use the postBook function
 
-                            reset();
+                setIsLoading(false);
 
-                            // You can navigate or perform any other actions here
-                            navigate('/dashboard/AddBooks');
-                        });
-                }
-            });
+                Swal.fire({
+                    title: 'Added Successfully',
+                    icon: 'success',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown',
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp',
+                    },
+                });
+
+                reset();
+                navigate('/dashboard/AddBooks');
+            }
+        } catch (error) {
+            console.error("Error uploading image or adding book:", error);
+            setIsLoading(false); // Hide loader in case of error
+        }
     };
-
-
-
 
     return (
         <div data-aos="zoom-in">
+            {isLoading && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <Loader />
+                </div>
+            )}
             <h2 className="text-3xl bg-slate-300 text-center p-2">Add Books Here</h2>
 
-            <div className="flex justify-center mt-10 rounded-xl  mx-20 e py-6">
+            <div className="flex justify-center mt-10 rounded-xl mx-20 py-6">
                 <form className="" onSubmit={handleSubmit(handleAddBook)}>
-
                     <section className="flex gap-5">
-                        <div className="">
-                            <label className=""> <span className="">Book Name</span></label> <br />
-                            <textarea type="text" {...register("bookName", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
-                        <div className="">
-                            <label className=""> <span className="">Add Picture</span></label> <br />
-                            <input type="file" {...register("image", {
-                                required: "Image is Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
+                        <InputForm
+                            label="Book Name"
+                            name="bookName"
+                            register={register}
+                            type="text"
+                        />
+                        <ImageForm
+                            label="Add Picture"
+                            name="image"
+                            register={register}
+                        />
                     </section>
 
                     <section className="flex gap-5">
-                        <div className="">
-                            <label className=""> <span className="">Writer</span></label> <br />
-                            <textarea type="text" {...register("Writer", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
-                        <div className="">
-                            <label className=""> <span className="">Price</span></label> <br />
-                            <textarea type="text" {...register("Price", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
+                        <InputForm
+                            label="Writer"
+                            name="Writer"
+                            register={register}
+                            type="text"
+                        />
+                        <InputForm
+                            label="Price"
+                            name="Price"
+                            register={register}
+                            type="text"
+                        />
                     </section>
 
                     <section className="flex gap-5">
-                        <div className="">
-                            <label className=""> <span className="">Publishers</span></label> <br />
-                            <textarea type="text" {...register("Publishers", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
-                        <div className="">
-                            <label className=""> <span className="">Number of Page</span></label> <br />
-                            <input type="number" {...register("NumberofPage", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
+                        <InputForm
+                            label="Publishers"
+                            name="Publishers"
+                            register={register}
+                            type="text"
+                        />
+                        <InputForm
+                            label="Number of Page"
+                            name="NumberofPage"
+                            register={register}
+                            type="number"
+                        />
                     </section>
 
                     <section className="flex gap-5">
-                        <div className="">
-                            <label className=""> <span className="">Book Type</span></label> <br />
-                            <select
-                                {...register('BookType')}
-                                className="w-96 input input-bordered a">
-                                {<option>Fiction</option>}
-                                {<option>Biography</option>}
-                                {<option>Mystery</option>}
-                                {<option>Science</option>}
-                                {<option>Story</option>}
-                                {<option>Poetry</option>}
-                            </select>
-                        </div>
-                        <div className="">
-                            <label className=""> <span className="">Last Update</span></label> <br />
-                            <input type="text" {...register("LastUpdate", {
-                                required: "Required"
-                            })} className="input input-bordered w-96 a" />
-                        </div>
+                        <SelectionForm
+                            label="Book Type"
+                            name="BookType"
+                            register={register}
+                            options={['Fiction', 'Biography', 'Mystery', 'Science', 'Story', 'Poetry']}
+                        />
+                        
+                        <InputForm
+                            label="Last Update"
+                            name="LastUpdate"
+                            register={register}
+                            type="text"
+                        />
                     </section>
 
                     <div className="mt-4">
-                        <label className=""> <span className="">Description</span></label> <br />
-                        <textarea type="text" {...register("Description", {
-                            required: "Required"
-                        })} className="input input-bordered w-full h-24 a" />
+                        <InputForm
+                            label="Description"
+                            name="Description"
+                            register={register}
+                            type="textarea"
+                            h="h-44"
+                        />
                     </div>
-
 
                     <input className='btn btn-accent w-full mt-4' value="Add Book" type="submit" />
                 </form>
             </div>
-
         </div>
     );
 };

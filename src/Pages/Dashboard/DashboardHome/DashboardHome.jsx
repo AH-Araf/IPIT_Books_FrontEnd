@@ -1,7 +1,7 @@
 
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { getUserData } from "../../../api/getAdmin";
 
 
 const DashboardHome = () => {
@@ -11,16 +11,15 @@ const DashboardHome = () => {
 
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        // Fetch user data from the API
-        axios.get(`http://localhost:5000/email?email=${user?.email}`)
-            .then(response => {
-                setUserData(response.data);
-            })
-            .catch(error => {
-                console.error("Error fetching user data:", error);
-            });
+        const fetchUserData = async () => {
+            const data = await getUserData(user?.email);
+            setUserData(data);
+        };
+
+        if (user?.email) {
+            fetchUserData();
+        }
     }, [user?.email]);
-    console.log(userData)
 
     return (
         <div className="" data-aos="zoom-in">

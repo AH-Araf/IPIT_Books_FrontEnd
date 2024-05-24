@@ -20,6 +20,7 @@ import ManageAuthor from "../Pages/Dashboard/AdminDashboard/ManageAuthor";
 import MyOrders from "../Pages/Dashboard/UserDashboard/MyOrders";
 import Cart from "../Pages/Cart/Cart";
 import Bkash from "../Pages/Cart/Bkash";
+import EditSingleBook from "../Pages/Dashboard/AdminDashboard/EditSingleBook";
 
 
 export const router = createBrowserRouter([
@@ -41,8 +42,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/book/:id",
-                element: <PrivateRoute><SingleBook /></PrivateRoute>,
-                loader: async ({ params }) => fetch(`http://localhost:5000/allBooks/${params.id}`),
+                element: <SingleBook />,
+                loader: async ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/allBooks/${params.id}`),
             },
             
             {
@@ -89,6 +90,7 @@ export const router = createBrowserRouter([
                 path: "AddBooks",
                 element: <AddBooks />
             },
+
             {
                 path: "OrderList",
                 element: <OrderList />
@@ -96,6 +98,11 @@ export const router = createBrowserRouter([
             {
                 path: "ManageBooks",
                 element: <ManageBooks />
+            },
+            {
+                path: "UpdateBook/:id",
+                element: <EditSingleBook />,
+                loader: async ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/allBooks/${params.id}`),
             },
             {
                 path: "Stats",

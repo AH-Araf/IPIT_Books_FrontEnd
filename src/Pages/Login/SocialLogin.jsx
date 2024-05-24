@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-
-
+import { saveSocialUser } from "../../api/user";
 
 const SocialLogin = () => {
     const { googleSignIn } = useContext(AuthContext);
@@ -18,18 +17,19 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'user' }
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(saveUser)
-                })
-                    .then(res => res.json())
+
+                // Use saveSocialUser function from socialAPI.js to save the user
+                saveSocialUser(saveUser)
                     .then(() => {
                         navigate(from, { replace: true });
                     })
+                    .catch(error => {
+                        console.error('Error saving social user:', error);
+                    });
             })
+            .catch(error => {
+                console.error('Error signing in with Google:', error);
+            });
     }
 
     return (

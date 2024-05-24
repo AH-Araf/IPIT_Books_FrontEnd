@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { getBooks } from '../../../../api/books';
 
 const LineC = () => {
     const [bookStats, setBookStats] = useState([]);
 
     useEffect(() => {
-        // Fetch data from API to get book stats
-        fetch("http://localhost:5000/allBooks")
-            .then(response => response.json())
+        getBooks()
             .then(data => {
                 // Count occurrences of each book type
                 const stats = {};

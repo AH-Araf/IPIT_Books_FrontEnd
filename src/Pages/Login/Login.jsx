@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import img from "../../assets/Image/login.jpg"
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -86,7 +87,6 @@ const Login = () => {
                             </label>
                         </div>
 
-
                         <input
                             className="btn e btn-success"
                             type="submit"
@@ -102,7 +102,10 @@ const Login = () => {
                                 </Link>
                             </small>
                         </p>
+
                     </form>
+
+                    <SocialLogin />
                 </div>
             </div>
         </div>

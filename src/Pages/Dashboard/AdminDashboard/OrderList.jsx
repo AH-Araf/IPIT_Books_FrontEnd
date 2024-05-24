@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import { fetchOrders } from '../../../api/orders';
 
 const OrderList = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
-            .then(response => response.json())
+        // Fetch orders when the component mounts
+        fetchOrders()
             .then(data => setOrders(data))
             .catch(error => {
                 console.error('Error fetching orders:', error);
                 Swal.fire('Error', 'Failed to fetch orders', 'error');
             });
     }, []);
+
 
     return (
         <div className='p-4'>

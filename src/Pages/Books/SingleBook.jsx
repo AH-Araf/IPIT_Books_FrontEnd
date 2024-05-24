@@ -47,7 +47,7 @@ const SingleBook = () => {
             title: 'Added to Cart!',
             text: `${bookName} has been added to your cart.`,
             showConfirmButton: false,
-            timer: 3000 // Automatically close after 2 seconds
+            timer: 3000 
         });
     };
 

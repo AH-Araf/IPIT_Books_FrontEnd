@@ -81,7 +81,7 @@ const Cart = () => {
         };
 
         if (paymentMethod === 'Cash on Delivery') {
-            fetch('http://localhost:5000/postOrder', {
+            fetch(`${import.meta.env.VITE_API_URL}/postOrder`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

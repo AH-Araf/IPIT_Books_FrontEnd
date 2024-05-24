@@ -1,14 +1,13 @@
 import  { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { getBooks } from '../../../../api/books';
 
 const PieC = () => {
     const [bookStats, setBookStats] = useState([]);
     const chartRef = useRef(null);
 
     useEffect(() => {
-        // Fetch data from API to get book stats
-        fetch("http://localhost:5000/allBooks")
-            .then(response => response.json())
+        getBooks()
             .then(data => {
                 // Count occurrences of each book type
                 const stats = {};

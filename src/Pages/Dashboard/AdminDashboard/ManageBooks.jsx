@@ -1,16 +1,23 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { deleteBook, getBooks } from '../../../api/books';
+import { Link } from 'react-router-dom';
 
 const ManageBooks = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        // Fetch data from API
-        fetch("http://localhost:5000/allBooks")
-            .then(response => response.json())
-            .then(data => setBooks(data))
-            .catch(error => console.error('Error fetching data:', error));
+        fetchBooks(); // Fetch books when component mounts
     }, []);
+
+    const fetchBooks = async () => {
+        try {
+            const data = await getBooks(); // Fetch books data
+            setBooks(data); // Update books state
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     // Function to determine row color based on index
     const getRowColor = (index) => {
@@ -26,30 +33,25 @@ const ManageBooks = () => {
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'No, keep it'
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                // Make API request to delete the book
-                fetch(`http://localhost:5000/deleteBooks/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        Swal.fire(
-                            'Deleted!',
-                            data.message,
-                            'success'
-                        );
-                        // Remove the deleted book from the UI
-                        setBooks(prevBooks => prevBooks.filter(book => book._id !== id));
-                    })
-                    .catch(error => {
-                        console.error('Error deleting book:', error);
-                        Swal.fire(
-                            'Error!',
-                            'Failed to delete book.',
-                            'error'
-                        );
-                    });
+                try {
+                    const data = await deleteBook(id); // Delete book
+                    Swal.fire(
+                        'Deleted!',
+                        data.message,
+                        'success'
+                    );
+                    // Remove the deleted book from the UI
+                    setBooks(prevBooks => prevBooks.filter(book => book._id !== id));
+                } catch (error) {
+                    console.error('Error deleting book:', error);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to delete book.',
+                        'error'
+                    );
+                }
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelled',
@@ -74,7 +76,6 @@ const ManageBooks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Dynamically render rows based on fetched data */}
                     {books.map((book, index) => (
                         <tr key={book._id} className={getRowColor(index)}>
                             <td>
@@ -99,6 +100,7 @@ const ManageBooks = () => {
                             <td>{book.LastUpdate}</td>
                             <td>
                                 <button className="btn text-red-700 e btn-red btn-xs font-bold" onClick={() => handleDelete(book._id)}>Delete</button>
+                                <Link to={`/dashboard/UpdateBook/${book._id}`} className="btn ms-1 text-blue-600 e btn-red btn-xs font-bold">Edit</Link>
                             </td>
                         </tr>
                     ))}

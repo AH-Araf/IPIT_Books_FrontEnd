@@ -1,15 +1,13 @@
-import  { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Title from '../../../ReuseableComponents/Title';
+import { fetchMessages } from '../../../api/contact';
 
-const Message = () => {
+const Contact = () => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        // Fetch data from the API endpoint
-        fetch('http://localhost:5000/message')
-            .then(response => response.json())
+        fetchMessages()
             .then(data => {
-                // Set the fetched messages to state
                 setMessages(data);
             })
             .catch(error => {
@@ -19,7 +17,7 @@ const Message = () => {
 
     return (
         <div className="container mx-auto px-4 py-10">
-            <Title a="Messages"/>
+            <Title a="Messages" />
             <div className="grid gap-8">
                 {messages.map(message => (
                     <div key={message._id} className="bg-white e p-6 rounded-md">
@@ -34,4 +32,4 @@ const Message = () => {
     );
 };
 
-export default Message;
+export default Contact;

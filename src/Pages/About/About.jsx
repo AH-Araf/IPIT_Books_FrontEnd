@@ -1,6 +1,7 @@
 import AboutCar from "./AboutComponent/AboutCar";
 import AboutPar from "./AboutComponent/AboutPar";
 import Partnership from "./AboutComponent/Partnership";
+import PhotoSwp from "./AboutComponent/PhotoSwp";
 
 
 const About = () => {
@@ -9,6 +10,7 @@ const About = () => {
             <AboutCar/>
             <AboutPar/>
             <Partnership/>
+            <PhotoSwp/>
         </div>
     );
 };

@@ -4,51 +4,49 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "./SocialLogin";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { registerUser } from "../../api/user";
 
 const Register = () => {
-
-    const {register, handleSubmit, reset, formState: {errors}} = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigation = useNavigate();
 
     const onSubmit = data => {
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
 
-            updateUserProfile(data.name)
-            .then(()=> {
-                const saveUser = { name: data.name, email: data.email, password: data.password, role: 'user'}
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json' 
-                    },
-                    body: JSON.stringify(saveUser)
-                })
-                .then(res=> res.json())
-                .then (data=> {
-                    if ( data.insertedId){
-                        reset();
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'User Registration Completed',
-                            timer: 1500
-                        });
-                        navigation('/')
-                    }
-                })
+                updateUserProfile(data.name)
+                    .then(() => {
+                        const saveUser = { name: data.name, email: data.email, password: data.password, role: 'user' }
+
+                        // Use registerUser function from userAPI.js to register the user
+                        registerUser(saveUser)
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'User Registration Completed',
+                                        timer: 1500
+                                    });
+                                    navigation('/')
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error registering user:', error);
+                                Swal.fire('Error', 'Failed to register user', 'error');
+                            });
+                    })
             })
-        })
-    }
-
+    };
 
     return (
         <div className="hero min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                
+
                 <div className="card border-2 border-white e w-96  bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
@@ -89,7 +87,7 @@ const Register = () => {
                         </div>
                         <p><small>Already have an account <Link to="/login"><small className="text-blue-700 font-bold">Login</small></Link></small></p>
                     </form>
-                    <SocialLogin/>
+                    <SocialLogin />
                 </div>
             </div>
         </div>

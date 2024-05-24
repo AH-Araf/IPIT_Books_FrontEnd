@@ -18,12 +18,10 @@ const Home = () => {
             <div data-aos="zoom-out" data-aos-duration="1000" className="bg-slate-100 pb-8 pt-1">
                 <BestSelling />
             </div>
-            <div data-aos="zoom-in" data-aos-duration="2000">
-                <Mar />
-            </div>
-            <HomeFaq/>
-            <ImageHover/>
-            
+            <Mar />
+            <HomeFaq />
+            <ImageHover />
+
             <div data-aos="zoom-in">
                 <ContactCard />
             </div>

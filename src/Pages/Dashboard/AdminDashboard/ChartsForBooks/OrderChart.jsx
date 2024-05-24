@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Swal from 'sweetalert2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { fetchOrders } from '../../../../api/orders';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -18,8 +19,7 @@ const OrderChart = () => {
     });
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
-            .then(response => response.json())
+        fetchOrders()
             .then(data => {
                 const labels = data.map(order => order.customerInfo.name);
                 const bookQuantities = data.map(order => order.orders.reduce((total, item) => total + item.quantity, 0));

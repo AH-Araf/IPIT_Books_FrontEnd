@@ -1,80 +1,78 @@
-
-
-
-
-
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import { toast } from 'react-toastify';
 import Swal from "sweetalert2";
 import AuthorDetails from "./AuthorDetails";
+import Loader from "../../Shared/Loader/Loader";
+import { imageUpload } from "../../../api/utils";
+import { getAllAuthors, postAuthor } from "../../../api/author";
 
 const ManageAuthor = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
-    const imageHostKey = `771e92fe5bf3b4553445891d6b44f4a1`;
-    // const { user } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
+    const [authors, setAuthors] = useState([]);
 
-    const handleAdd = data => {
+    useEffect(() => {
+        // Fetch all authors when the component mounts
+        getAllAuthors()
+            .then(data => setAuthors(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }, []); // Empty dependency array means it only runs once on mount
+
+    const handleAdd = async (data) => {
+        setIsLoading(true); // Show loader
         const image = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
-                    const intern = {
-                        AuthorName: data.AuthorName,
-                        image: imgData.data.url,
-                    };
+        try {
+            const imgData = await imageUpload(image);
 
-                    fetch('http://localhost:5000/postAuthor', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify(intern)
-                    })
-                        .then(res => res.json())
-                        .then(result => {
-                            console.log(result);
+            if (imgData.success) {
+                const newAuthor = {
+                    AuthorName: data.AuthorName,
+                    image: imgData.data.url,
+                };
 
-                            // Use SweetAlert for a nicer notification
-                            Swal.fire({
-                                title: 'Added Successfully',
-                                icon: 'success',
-                                showClass: {
-                                    popup: 'animate__animated animate__fadeInDown'
-                                },
-                                hideClass: {
-                                    popup: 'animate__animated animate__fadeOutUp'
-                                }
-                            });
+                const result = await postAuthor(newAuthor);
 
-                            reset();
+                // Update authors state with the new author
+                setAuthors(prevAuthors => [...prevAuthors, result]);
 
-                            // You can navigate or perform any other actions here
-                            navigate('/dashboard/ManageAuthor');
-                        });
-                }
-            });
+                setIsLoading(false); // Hide loader
+
+                // Use SweetAlert for a nicer notification
+                Swal.fire({
+                    title: 'Added Successfully',
+                    icon: 'success',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown',
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp',
+                    },
+                });
+
+                reset();
+                navigate('/dashboard/ManageAuthor');
+            }
+        } catch (error) {
+            console.error("Error uploading image or adding author:", error);
+            setIsLoading(false); // Hide loader in case of error
+        }
     };
-
-
-
 
     return (
         <div data-aos="zoom-in">
+            {isLoading && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <Loader />
+                </div>
+            )}
             <h2 className="text-3xl bg-slate-300 text-center p-2">Add Author</h2>
 
-            <div className="flex justify-center mt-10 rounded-xl  mx-20 e py-6">
-                <form className="" onSubmit={handleSubmit(handleAdd)}>
+            <div className="flex justify-center mt-10 rounded-xl mx-20 py-6">
 
+                <form className="" onSubmit={handleSubmit(handleAdd)}>
                     <section className="">
                         <div className="">
                             <label className=""> <span className="">Author Name</span></label> <br />
@@ -93,7 +91,7 @@ const ManageAuthor = () => {
                 </form>
             </div>
             <div className="mt-20 m-8 e rounded-2xl">
-                <AuthorDetails/>
+                <AuthorDetails authors={authors} setAuthors={setAuthors} />
             </div>
         </div>
     );

@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { getBooks } from '../../../../api/books';
 
 const BarC = () => {
     const [bookStats, setBookStats] = useState([]);
 
     useEffect(() => {
-        // Fetch data from API to get book stats
-        fetch("http://localhost:5000/allBooks")
-            .then(response => response.json())
+        getBooks()
             .then(data => {
-                // Count occurrences of each book type
                 const stats = {};
                 data.forEach(book => {
                     if (stats[book.BookType]) {
@@ -18,7 +16,6 @@ const BarC = () => {
                         stats[book.BookType] = 1;
                     }
                 });
-                // Convert stats object to an array of objects
                 const statsArray = Object.keys(stats).map(key => ({ bookType: key, count: stats[key] }));
                 setBookStats(statsArray);
             })

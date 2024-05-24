@@ -3,6 +3,7 @@ import  { useEffect, useState } from 'react';
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { createPaymentIntent } from '../../api/payment';
 
 // Load your publishable key from your Stripe dashboard
 const stripePromise = loadStripe('your-publishable-key'); // Ensure this is your actual publishable key
@@ -13,15 +14,12 @@ const CheckoutForm = ({ orderData }) => {
     const navigate = useNavigate();
     const [clientSecret, setClientSecret] = useState('');
 
+
     useEffect(() => {
         // Create PaymentIntent when the component loads
-        fetch('http://localhost:5000/create-payment-intent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ totalPrice: orderData.totalPrice }),
-        })
-            .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+        createPaymentIntent(orderData.totalPrice)
+            .then(data => setClientSecret(data.clientSecret))
+            .catch(error => console.error('Error creating payment intent:', error));
     }, [orderData]);
 
     const handleSubmit = async (event) => {
