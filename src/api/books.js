@@ -1,5 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+
 // Function to get all books
 export const getBooks = async () => {
     try {
@@ -14,6 +15,7 @@ export const getBooks = async () => {
         return [];
     }
 };
+
 
 // Function to post a new book
 export const postBook = async (bookDetails) => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getBooks } from '../../api/books';
 import BookLoader from '../Shared/Loader/BookLoader';
+import { fetchDataFromApi } from '../../ReuseableComponents/ApiFetching';
 
 const Books = () => {
     const [books, setBooks] = useState([]);
@@ -9,20 +9,19 @@ const Books = () => {
     const [selectedType, setSelectedType] = useState('');
     const [loading, setLoading] = useState(true);
 
+    const allBooks = 'allBooks';
     useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                setLoading(true); 
-                const data = await getBooks(); 
+        const fetchAuthors = async () => {
+            const data = await fetchDataFromApi(allBooks);
+            if (data) {
                 setBooks(data);
-                setLoading(false)
-            } catch (error) {
-                console.error('Error fetching books:', error);
-            } 
+                setLoading(false);
+            }
         };
-
-        fetchBooks();
+        fetchAuthors();
     }, []);
+
+    
 
     const filteredBooks = books.filter(book =>
         book.bookName.toLowerCase().includes(searchTerm.toLowerCase()) &&

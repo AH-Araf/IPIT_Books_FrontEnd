@@ -15,6 +15,7 @@ const fetchDataFromApi = async (endpoint) => {
     }
 };
 
+
 const ApiFetching = ({ endpoint }) => {
     const [data, setData] = useState([]);
 

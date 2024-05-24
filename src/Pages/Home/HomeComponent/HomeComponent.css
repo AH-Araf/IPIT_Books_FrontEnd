@@ -1,4 +1,4 @@
-.author-image img{
+.author-image img {
     height: 180px;
     width: 180px;
     margin: 0px 50px;
@@ -8,8 +8,21 @@
     border: 2px solid white;
     padding: 4px;
 }
-.author-image p{
+
+.author-image p {
     font-weight: 600;
     color: rgb(130, 130, 235)
 }
 
+.image-height {
+    height: 700px;
+}
+
+@media only screen and (max-width: 600px) {
+    .image-height {
+        height: 300px;
+    }
+    .hd-text {
+        display: none;
+    }
+}

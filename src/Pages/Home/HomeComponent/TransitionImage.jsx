@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
 import Title from '../../../ReuseableComponents/Title';
-import { getBooks } from '../../../api/books';
+import { fetchDataFromApi } from '../../../ReuseableComponents/ApiFetching';
 
 const TransitionImage = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [apiImages, setApiImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const allBooks = 'allBooks';
     useEffect(() => {
-        const fetchImages = async () => {
-            try {
-                const data = await getBooks();
+        const fetchAuthors = async () => {
+            const data = await fetchDataFromApi(allBooks);
+            if (data) {
                 const fetchedImages = data.map(book => book.image);
                 setApiImages(fetchedImages);
-                setLoading(false); 
-            } catch (error) {
-                console.error('Error fetching images:', error);
+                setLoading(false);
             }
         };
-
-        fetchImages();
+        fetchAuthors();
     }, []);
 
     const showNextItems = () => {
@@ -27,28 +25,37 @@ const TransitionImage = () => {
     };
 
     useEffect(() => {
-        const interval = setInterval(showNextItems, 1000);
-
+        const interval = setInterval(showNextItems, 1000); // Keep original interval
         return () => clearInterval(interval);
     }, [apiImages]);
 
     return (
-        <div>
+        <div className="container mx-auto p-4 flex flex-col justify-center items-center">
             <Title a="Our Latest Books" />
-            <div className='flex justify-center items-center'>
-                <div className="carousel carousel-end rounded-box">
-                    {loading ? ( 
+            <div className="flex justify-center items-center">
+                <div className="carousel carousel-center w-full">
+                    {loading ? (
                         [0, 1, 2, 3].map((offset) => (
                             <div key={startIndex + offset} className={`carousel-item ${offset === 0 ? 'active' : ''}`}>
-                                <div className="skeleton w-72 h-96 m-4 rounded-xl e shadow-2xl"></div>
+                                <div className="skeleton w-72 h-96 m-4 rounded-xl shadow-2xl"></div>
                             </div>
                         ))
                     ) : (
-                        [0, 1, 2, 3].map((offset) => (
-                            <div key={startIndex + offset} className={`carousel-item ${offset === 0 ? 'active' : ''}`}>
-                                <img className='m-4 rounded-xl e w-72 shadow-2xl h-96' src={apiImages[(startIndex + offset) % apiImages.length]} alt="Book" />
+                        <>
+                            <div className="carousel carousel-center p-4 space-x-4 rounded-box md:hidden">
+                                <img className="rounded-box w-72 h-96 mx-auto" src={apiImages[startIndex]} alt="Book" />
                             </div>
-                        ))
+                            <div className="carousel carousel-center p-4 space-x-4 rounded-box hidden md:flex lg:hidden">
+                                {[0, 1].map((offset) => (
+                                    <img key={startIndex + offset} className="rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length]} alt="Book" />
+                                ))}
+                            </div>
+                            <div className="carousel carousel-center p-4 space-x-4 rounded-box hidden lg:flex">
+                                {[0, 1, 2, 3].map((offset) => (
+                                    <img key={startIndex + offset} className="rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length]} alt="Book" />
+                                ))}
+                            </div>
+                        </>
                     )}
                 </div>
             </div>

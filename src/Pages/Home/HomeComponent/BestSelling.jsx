@@ -21,6 +21,7 @@ const BestSelling = () => {
         };
         fetchLatestBooks();
     }, []);
+    
 
     const toggleDescription = (index) => {
         const updatedBooks = [...latestBooks];
