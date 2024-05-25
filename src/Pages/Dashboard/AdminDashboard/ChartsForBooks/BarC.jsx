@@ -23,11 +23,11 @@ const BarC = () => {
     }, []);
 
     return (
-        <div data-aos="fade-right" style={{ width: '600px', height: '350px' }}>
+        <div data-aos="fade-right" style={{ width: '400px', height: '350px' }}>
             <ResponsiveContainer>
                 <BarChart
                     data={bookStats}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                    margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
                     barCategoryGap={20} // Adjust the gap between bars as needed
                 >
                     <CartesianGrid strokeDasharray="3 3" />

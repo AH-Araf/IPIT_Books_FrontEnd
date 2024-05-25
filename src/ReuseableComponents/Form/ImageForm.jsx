@@ -3,9 +3,9 @@
 
 const ImageForm = ({ label, name, register, required = true }) => {
     return (
-        <div className="">
+        <div className="mx-3">
             <label className="">
-                <span className="">{label}</span>
+                <span className="mx-3">{label}</span>
             </label>
             <br />
             <input

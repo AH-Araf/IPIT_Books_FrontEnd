@@ -12,7 +12,7 @@ import { RiMessage2Line } from "react-icons/ri";
 import { FaBookReader } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { getUserData } from "../api/getAdmin";
-
+import { LiaLuggageCartSolid } from "react-icons/lia";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -70,7 +70,8 @@ const Dashboard = () => {
                         ) : (
                             <>
                                 <li><NavLink to="/dashboard/DashboardHome"><CgProfile /> User Home</NavLink></li>
-                                <li><NavLink to="/dashboard/MyOrders"><FaShoppingCart /> My Orders</NavLink></li>
+                                <li><NavLink to="/dashboard/Cart"><FaShoppingCart />Cart</NavLink></li>
+                                    <li><NavLink to="/dashboard/MyOrder"><LiaLuggageCartSolid />My Orders</NavLink></li>
                                 <li><NavLink to="/"><HiOutlineHome /> Back To Home</NavLink></li>
                             </>
                         )}

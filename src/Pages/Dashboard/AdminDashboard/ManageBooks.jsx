@@ -7,24 +7,23 @@ const ManageBooks = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        fetchBooks(); // Fetch books when component mounts
+        fetchBooks(); 
     }, []);
+
 
     const fetchBooks = async () => {
         try {
-            const data = await getBooks(); // Fetch books data
-            setBooks(data); // Update books state
+            const data = await getBooks(); 
+            setBooks(data); 
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
-    // Function to determine row color based on index
     const getRowColor = (index) => {
         return index % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300';
     };
 
-    // Function to handle book deletion
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -36,13 +35,12 @@ const ManageBooks = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const data = await deleteBook(id); // Delete book
+                    const data = await deleteBook(id); 
                     Swal.fire(
                         'Deleted!',
                         data.message,
                         'success'
                     );
-                    // Remove the deleted book from the UI
                     setBooks(prevBooks => prevBooks.filter(book => book._id !== id));
                 } catch (error) {
                     console.error('Error deleting book:', error);
@@ -69,9 +67,9 @@ const ManageBooks = () => {
                 <thead className='font-bold text-lg text-white bg-slate-700'>
                     <tr>
                         <th>Name</th>
-                        <th>Writer</th>
+                        <th className='hidden lg:block'>Writer</th>
                         <th>Price</th>
-                        <th>Last Update</th>
+                        <th className='hidden lg:block'>Last Update</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -87,20 +85,21 @@ const ManageBooks = () => {
                                     </div>
                                     <div>
                                         <div className="font-bold">{book.bookName}</div>
+                                        <p className='lg:hidden'>{book.Writer}</p>
                                         <div className="text-sm opacity-50">{book.BookType}</div>
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td className='hidden lg:block'>
                                 {book.Writer}
                                 <br />
                                 <span className="badge badge-ghost badge-sm a">{book.Publishers}</span>
                             </td>
                             <td>{book.Price}</td>
-                            <td>{book.LastUpdate}</td>
+                            <td className='hidden lg:block'>{book.LastUpdate}</td>
                             <td>
                                 <button className="btn text-red-700 e btn-red btn-xs font-bold" onClick={() => handleDelete(book._id)}>Delete</button>
-                                <Link to={`/dashboard/UpdateBook/${book._id}`} className="btn ms-1 text-blue-600 e btn-red btn-xs font-bold">Edit</Link>
+                                <Link to={`/dashboard/UpdateBook/${book._id}`} className="btn m-1 text-blue-600 e btn-red btn-xs font-bold">Edit</Link>
                             </td>
                         </tr>
                     ))}

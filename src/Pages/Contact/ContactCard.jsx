@@ -44,7 +44,7 @@ const ContactCard = () => {
     };
 
     return (
-        <div data-aos="fade-up" data-aos-duration="2000" className='flex justify-center items-center gap-20 bg-emerald-200 p-5 mx-40 mt-32 e rounded-2xl' >
+        <div data-aos="fade-up" data-aos-duration="2000" className='lg:flex justify-center items-center gap-20 bg-emerald-200 p-5 mx-5 lg:mx-40 mt-32 e rounded-2xl' >
 
             <div className='text-center'>
 
@@ -65,33 +65,33 @@ const ContactCard = () => {
             <div>
                 <div>
                     <form onSubmit={handleSubmit(handleAddMessage)}>
-                        <section className="">
+                        <section className="flex flex-col justify-center items-center mt-4">
                             <div className="">
                                 <label className=""> <span className="">Your Name</span></label> <br />
                                 <textarea type="text" {...register("YourName", {
                                     required: "Required"
-                                })} className="input border-2 border-slate-400  w-96" />
+                                })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
                                 <label className=""> <span className="">Phone Number</span></label> <br />
                                 <textarea type="text" {...register("PhoneNumber", {
                                     required: "Required"
-                                })} className="input border-2 border-slate-400  w-96" />
+                                })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
                                 <label className=""> <span className="">Email</span></label> <br />
                                 <textarea type="text" {...register("Email", {
                                     required: "Required"
-                                })} className="input border-2 border-slate-400  w-96" />
+                                })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
                                 <label className=""> <span className="">Message</span></label> <br />
                                 <textarea type="text" {...register("Message", {
                                     required: "Required"
-                                })} className="input border-2 border-slate-400  w-96 h-20" />
+                                })} className="input border-2 border-slate-400  lg:w-96 h-20" />
                             </div>
                         </section>
                         <div className='flex justify-center'>

@@ -1,13 +1,15 @@
 // SingleBook.js
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import Marquee from "react-fast-marquee";
 import QRCode from "qrcode.react";
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
+
 
 const SingleBook = () => {
-    // const history = useHistory();
+    const { user } = useContext(AuthContext);
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
     const bookData = useLoaderData();
@@ -84,15 +86,15 @@ const SingleBook = () => {
                 </div>
             </div>
 
-            <div className="flex justify-center e rounded-md p-1 items-center gap-3 text-xl font-bold mx-6 my-1">
+            <div className="flex justify-center e rounded-md p-1 items-center gap-3 lg:text-xl font-bold mx-6 my-1">
                 <p className="bg-slate-200 rounded-lg">Description:</p>
                 <Marquee>
                     <p>{Description}</p>
                 </Marquee>
             </div>
 
-            <div className="flex justify-center items-center gap-10 mt-8 a p-10 rounded-xl mx-10">
-                <div className="e rounded-xl">
+            <div className="lg:flex justify-center items-center gap-10 mt-8 a p-10 rounded-xl mx-10">
+                <div className=" rounded-xl">
                     <img className="h-72 w-52 rounded-xl border-2 " src={image} alt="" />
                 </div>
                 <div className="w-[300px]">
@@ -112,10 +114,18 @@ const SingleBook = () => {
                 </div>
             </div>
             <div className='flex justify-center mt-10'>
-                <button className='e btn btn-error text-white text-lg' onClick={addToCart}>Add to Cart</button>
+                
+                {
+                    user ? <>
+                        <button className='e btn btn-error text-white text-lg' onClick={addToCart}>Add to Cart</button>
+                    </> :
+                        <>
+                            <Link className='e btn btn-error text-white text-lg' to='/login' active={location.pathname === '/login' || location.pathname === '/pleaseLogin' || location.pathname === '/register'}>Login to Buy</Link>
+                        </>
+                }
             </div>
         </div>
     );
 };
 
-export default SingleBook;
+export default SingleBook; 

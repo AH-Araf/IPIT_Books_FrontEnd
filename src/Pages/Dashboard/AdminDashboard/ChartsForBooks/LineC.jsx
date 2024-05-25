@@ -25,11 +25,11 @@ const LineC = () => {
     }, []);
 
     return (
-        <div data-aos="fade-left"  style={{ width: '600px', height: '350px' }}>
+        <div data-aos="fade-left"  style={{ width: '400px', height: '350px' }}>
             <ResponsiveContainer>
                 <LineChart
                     data={bookStats}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                    margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="bookType" />

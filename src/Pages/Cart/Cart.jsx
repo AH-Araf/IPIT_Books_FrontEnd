@@ -93,6 +93,8 @@ const Cart = () => {
                     Swal.fire('Order Placed', 'Your order has been placed successfully', 'success');
                     console.log(data);
                     reset();
+                    setCartItems([]);  // Clear cart items
+                    localStorage.removeItem('cart');  // Clear cart data from local storage
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -103,8 +105,8 @@ const Cart = () => {
     };
 
     return (
-        <div className='flex justify-around gap-5 m-5'>
-            <ul>
+        <div className='lg:flex justify-around gap-5 m-5'>
+            <ul className='lg:w-1/2'>
                 {cartItems.map((item, index) => (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4  bg-blue-50 px-4 py-2 a ' key={index}>
                         <img className='h-24 w-16' src={item.image} alt={item.bookName} />
@@ -128,7 +130,7 @@ const Cart = () => {
                 ))}
             </ul>
 
-            <div className='mt-4'>
+            <div className='mt-4 lg:w-1/2'>
                 <div>
                     {calculateTotalPrice().priceDetails.map((detail, index) => (
                         <p className='font-bold text-slate-700' key={index}>{detail}</p>

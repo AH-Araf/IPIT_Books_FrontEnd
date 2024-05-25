@@ -71,7 +71,7 @@ const AddBooks = () => {
 
             <div className="flex justify-center mt-10 rounded-xl mx-20 py-6">
                 <form className="" onSubmit={handleSubmit(handleAddBook)}>
-                    <section className="flex gap-5">
+                    <section className="lg:flex gap-5">
                         <InputForm
                             label="Book Name"
                             name="bookName"
@@ -85,7 +85,7 @@ const AddBooks = () => {
                         />
                     </section>
 
-                    <section className="flex gap-5">
+                    <section className="lg:flex gap-5">
                         <InputForm
                             label="Writer"
                             name="Writer"
@@ -100,7 +100,7 @@ const AddBooks = () => {
                         />
                     </section>
 
-                    <section className="flex gap-5">
+                    <section className="lg:flex gap-5">
                         <InputForm
                             label="Publishers"
                             name="Publishers"
@@ -115,7 +115,7 @@ const AddBooks = () => {
                         />
                     </section>
 
-                    <section className="flex gap-5">
+                    <section className="lg:flex gap-5">
                         <SelectionForm
                             label="Book Type"
                             name="BookType"
@@ -141,7 +141,7 @@ const AddBooks = () => {
                         />
                     </div>
 
-                    <input className='btn btn-accent w-full mt-4' value="Add Book" type="submit" />
+                    <input className='btn btn-accent w-full mt-4 ' value="Add Book" type="submit" />
                 </form>
             </div>
         </div>

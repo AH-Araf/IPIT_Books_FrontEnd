@@ -21,6 +21,7 @@ import MyOrders from "../Pages/Dashboard/UserDashboard/MyOrders";
 import Cart from "../Pages/Cart/Cart";
 import Bkash from "../Pages/Cart/Bkash";
 import EditSingleBook from "../Pages/Dashboard/AdminDashboard/EditSingleBook";
+import MyOrdersTwo from "../Pages/Dashboard/UserDashboard/MyOrdersTwo";
 
 
 export const router = createBrowserRouter([
@@ -120,8 +121,12 @@ export const router = createBrowserRouter([
 
             // User
             {
-                path: "MyOrders",
+                path: "Cart",
                 element: <MyOrders />
+            },
+            {
+                path: "MyOrder",
+                element: <MyOrdersTwo />
             },
         ]
     }

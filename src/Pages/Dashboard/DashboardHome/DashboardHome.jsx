@@ -2,10 +2,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { getUserData } from "../../../api/getAdmin";
+import BarC from "../AdminDashboard/ChartsForBooks/BarC";
+import LineC from "../AdminDashboard/ChartsForBooks/LineC";
 
 
 const DashboardHome = () => {
-
     const { user } = useContext(AuthContext)
     // console.log(user.email)
 
@@ -32,6 +33,11 @@ const DashboardHome = () => {
                     <p className="text-emerald-600">Role: {b.role}</p>
                 </div>
             </div>)}
+            
+            <div className="lg:flex justify-center items-center mt-24">
+                <LineC />
+                <BarC />
+            </div>
         </div>
     );
 };

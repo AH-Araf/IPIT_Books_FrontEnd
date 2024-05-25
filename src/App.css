@@ -1,0 +1,8 @@
+.main-screen {
+    /* Default style for .main-screen */
+
+    /* Media query specific to .main-screen */
+    @media only screen and (min-width:1850px) and (max-width: 2500px) {
+        margin: 0px 200px;
+    }
+}

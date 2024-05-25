@@ -34,6 +34,7 @@ const Books = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+       
             <h2 className="text-3xl font-semibold mb-4">Books</h2>
             <div className="mb-4 flex items-center">
                 <input
@@ -66,7 +67,7 @@ const Books = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredBooks.map(book => (
-                        <div data-aos="fade-up" data-aos-duration="2000" key={book._id} className="bg-white rounded-md e p-4 my-6 mx-10">
+                        <div data-aos="fade-up" data-aos-duration="2000" key={book._id} className="bg-white rounded-md e p-4 my-6 lg:mx-10">
                             <div>
                                 <img src={book.image} alt={book.bookName}
                                     className="rounded-lg e w-44 h-60 object-cover mb-4"

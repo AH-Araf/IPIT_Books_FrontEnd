@@ -2,6 +2,7 @@
 import { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from "../../assets/Image/a.png";
+import usa from "../../assets/Image/User-avatar.svg.png"
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const NavBar = () => {
@@ -93,7 +94,7 @@ const NavBar = () => {
                     user ? (
                         <div className="avatar">
                             <div className="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                <img className='h-10 w-10 border-2 border-white bg-white rounded-full' src={user?.photoURL} alt="user" />
+                                <img className='h-10 w-10 border-2 border-white bg-white rounded-full' src={user?.photoURL} alt={usa} />
                             </div>
                         </div>
                     ) : (

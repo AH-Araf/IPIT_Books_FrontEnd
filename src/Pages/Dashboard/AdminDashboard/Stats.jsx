@@ -10,7 +10,7 @@ const Stats = () => {
             <div className='flex h-96 justify-center items-center bg-emerald-50'>
                 <PieC />
             </div>
-            <div className='flex justify-center items-center '>
+            <div className='lg:flex justify-center items-center '>
                 <BarC />
                 <LineC />
             </div>

@@ -32,7 +32,7 @@ const Mar = () => {
                     {authors.map((author) => (
                         <div className="flex flex-col justify-center items-center my-10" key={author._id}>
                             <img className="e" src={author.image} alt={author.AuthorName} />
-                            <p className="mt-2">{author.AuthorName}</p>
+                            <p className="mt-2 text-sm">{author.AuthorName}</p>
                         </div>
                     ))}
                 </Marquee>

@@ -76,7 +76,7 @@ const PieC = () => {
     }, [bookStats]);
 
     return (
-        <div style={{ width: '450px', height: '400px' }}>
+        <div style={{ width: '390px', height: '390px' }}>
             <canvas  id="pieChart"></canvas>
         </div>
     );
