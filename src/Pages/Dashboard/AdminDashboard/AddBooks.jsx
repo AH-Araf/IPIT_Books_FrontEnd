@@ -34,6 +34,7 @@ const AddBooks = () => {
                     BookType: data.BookType,
                     LastUpdate: data.LastUpdate,
                     Description: data.Description,
+                    ReadMore: data.ReadMore,
                 };
 
                 const result = await postBook(bookDetails); // Use the postBook function
@@ -131,10 +132,18 @@ const AddBooks = () => {
                         />
                     </section>
 
-                    <div className="mt-4">
+                    <div className="lg:flex gap-5 mt-4">
                         <InputForm
                             label="Description"
                             name="Description"
+                            register={register}
+                            type="textarea"
+                            h="h-44"
+                        />
+
+                        <InputForm
+                            label="ReadMore"
+                            name="ReadMore"
                             register={register}
                             type="textarea"
                             h="h-44"

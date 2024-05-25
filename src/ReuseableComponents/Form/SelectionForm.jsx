@@ -4,7 +4,7 @@
 const SelectionForm = ({ label, name, register, options }) => {
     return (
         <div className="mx-3">
-            <label className="mx-3">
+            <label className="">
                 <span className="">{label}</span>
             </label>
             <br />

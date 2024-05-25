@@ -48,7 +48,7 @@ const ContactCard = () => {
 
             <div className='text-center'>
 
-                <div className='bg-white p-2 rounded-lg e'>
+                <div className='bg-white p-2 rounded-lg e flex flex-col justify-center items-center'>
                     <p className='font-bold text-xl text-emerald-600 mb-2'>Contact Us</p>
                     <img className='h-56 w-56 rounded-lg' src={logo} alt="" />
 
