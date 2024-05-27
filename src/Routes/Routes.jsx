@@ -22,6 +22,7 @@ import Cart from "../Pages/Cart/Cart";
 import Bkash from "../Pages/Cart/Bkash";
 import EditSingleBook from "../Pages/Dashboard/AdminDashboard/EditSingleBook";
 import MyOrdersTwo from "../Pages/Dashboard/UserDashboard/MyOrdersTwo";
+import DashboardProfile from "../Pages/Dashboard/DashboardHome/DashboardProfile";
 
 
 export const router = createBrowserRouter([
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 path: "DashboardHome",
                 element: <DashboardHome/>
+            },
+            {
+                path: "DashboardProfile",
+                element: <DashboardProfile />
             },
             {
                 path: "AddBooks",

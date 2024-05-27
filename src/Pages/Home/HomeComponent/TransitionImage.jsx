@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Title from '../../../ReuseableComponents/Title';
 import { fetchDataFromApi } from '../../../ReuseableComponents/ApiFetching';
+// import './TransitionImage.css'; 
 
 const TransitionImage = () => {
     const [startIndex, setStartIndex] = useState(0);
@@ -12,8 +13,7 @@ const TransitionImage = () => {
         const fetchAuthors = async () => {
             const data = await fetchDataFromApi(allBooks);
             if (data) {
-                const fetchedImages = data.map(book => book.image);
-                setApiImages(fetchedImages);
+                setApiImages(data);
                 setLoading(false);
             }
         };
@@ -43,16 +43,31 @@ const TransitionImage = () => {
                     ) : (
                         <>
                             <div className="carousel carousel-center p-4 space-x-4 rounded-box md:hidden">
-                                <img className="rounded-box w-72 h-96 mx-auto" src={apiImages[startIndex]} alt="Book" />
+                                <div className="overlay-container">
+                                    <img className="e rounded-box w-72 h-96 mx-auto" src={apiImages[startIndex].image} alt="Book" />
+                                    <div className="overlay">
+                                        <div className="overlay-text font-serif">{apiImages[startIndex].bookName}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="carousel carousel-center p-4 space-x-4 rounded-box hidden md:flex lg:hidden">
                                 {[0, 1].map((offset) => (
-                                    <img key={startIndex + offset} className="rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length]} alt="Book" />
+                                    <div key={startIndex + offset} className="overlay-container">
+                                        <img className="e rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length].image} alt="Book" />
+                                        <div className="overlay">
+                                            <div className="overlay-text font-serif">{apiImages[(startIndex + offset) % apiImages.length].bookName}</div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                             <div className="carousel carousel-center p-4 space-x-4 rounded-box hidden lg:flex">
                                 {[0, 1, 2, 3].map((offset) => (
-                                    <img key={startIndex + offset} className="rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length]} alt="Book" />
+                                    <div key={startIndex + offset} className="overlay-container">
+                                        <img className="e rounded-box w-72 h-96 mx-auto" src={apiImages[(startIndex + offset) % apiImages.length].image} alt="Book" />
+                                        <div className="overlay">
+                                            <div className="overlay-text font-serif">{apiImages[(startIndex + offset) % apiImages.length].bookName}</div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </>

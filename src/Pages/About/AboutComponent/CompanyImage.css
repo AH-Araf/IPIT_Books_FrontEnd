@@ -1,0 +1,35 @@
+.overlay-container {
+    position: relative;
+    display: inline-block;
+}
+
+.company-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.overlay-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay-text {
+    text-align: center;
+    font-size: 1.5rem;
+}

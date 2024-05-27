@@ -9,12 +9,14 @@ import { postBook } from "../../../api/books";
 import InputForm from "../../../ReuseableComponents/Form/InputForm";
 import ImageForm from "../../../ReuseableComponents/Form/ImageForm";
 import SelectionForm from "../../../ReuseableComponents/Form/SelectionForm";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddBooks = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleAddBook = async (data) => {
         setIsLoading(true); // Show loader
@@ -32,7 +34,7 @@ const AddBooks = () => {
                     Publishers: data.Publishers,
                     NumberofPage: data.NumberofPage,
                     BookType: data.BookType,
-                    LastUpdate: data.LastUpdate,
+                    LastUpdate: startDate.toISOString(), // Format the date
                     Description: data.Description,
                     ReadMore: data.ReadMore,
                 };
@@ -123,13 +125,15 @@ const AddBooks = () => {
                             register={register}
                             options={['Fiction', 'Biography', 'Mystery', 'Science', 'Story', 'Poetry']}
                         />
-                        
-                        <InputForm
-                            label="Last Update"
-                            name="LastUpdate"
-                            register={register}
-                            type="text"
-                        />
+
+                        <div className="form-group mx-3">
+                            <label className="form-label">Last Update</label> <br />
+                            <DatePicker
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                                className="form-control w-96 input input-bordered a"
+                            />
+                        </div>
                     </section>
 
                     <div className="lg:flex gap-5 mt-4">

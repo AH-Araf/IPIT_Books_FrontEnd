@@ -10,3 +10,14 @@ export const getUserData = async (email) => {
     }
 };
 
+
+
+export const updateUser = async (email, updatedUser) => {
+    try {
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/users/${email}`, updatedUser);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating user data:", error);
+        throw error;
+    }
+};

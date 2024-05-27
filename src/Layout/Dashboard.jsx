@@ -13,6 +13,8 @@ import { FaBookReader } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { getUserData } from "../api/getAdmin";
 import { LiaLuggageCartSolid } from "react-icons/lia";
+import { AiFillHome } from "react-icons/ai";
+
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -21,7 +23,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const data = await getUserData(user?.email); 
+            const data = await getUserData(user?.email);
             setUserData(data);
         };
 
@@ -44,7 +46,7 @@ const Dashboard = () => {
                     </label>
                     <Outlet />
                 </div>
-                
+
                 <div className="drawer-side" >
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-64 min-h-full bg-gray-600 text-white border-e-4 border-red-300">
@@ -58,7 +60,8 @@ const Dashboard = () => {
                                     </NavLink>
                                     <p className="text-green-400 text-lg">Admin</p>
                                 </div>
-                                <li><NavLink to="/dashboard/DashboardHome"><CgProfile /> Admin Home</NavLink></li>
+                                <li><NavLink to="/dashboard/DashboardHome"><AiFillHome /> Admin Home</NavLink></li>
+                                <li><NavLink to="/dashboard/DashboardProfile"><CgProfile /> Profile</NavLink></li>
                                 <li><NavLink to="/dashboard/AddBooks"><FaBookMedical /> Add Books</NavLink></li>
                                 <li><NavLink to="/dashboard/ManageBooks"><FaBookReader /> Manage Books</NavLink></li>
                                 <li><NavLink to="/dashboard/OrderList"><FaListAlt /> Order List</NavLink></li>
@@ -69,9 +72,10 @@ const Dashboard = () => {
                             </>
                         ) : (
                             <>
-                                <li><NavLink to="/dashboard/DashboardHome"><CgProfile /> User Home</NavLink></li>
+                                <li><NavLink to="/dashboard/DashboardHome"><AiFillHome /> User Home</NavLink></li>
+                                <li><NavLink to="/dashboard/DashboardProfile"><CgProfile /> Profile</NavLink></li>
                                 <li><NavLink to="/dashboard/Cart"><FaShoppingCart />Cart</NavLink></li>
-                                    <li><NavLink to="/dashboard/MyOrder"><LiaLuggageCartSolid />My Orders</NavLink></li>
+                                <li><NavLink to="/dashboard/MyOrder"><LiaLuggageCartSolid />My Orders</NavLink></li>
                                 <li><NavLink to="/"><HiOutlineHome /> Back To Home</NavLink></li>
                             </>
                         )}

@@ -1,4 +1,17 @@
+.p-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+@media only screen and (max-width:700px) {
+    .p-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 .swiper {
     width: 100%;

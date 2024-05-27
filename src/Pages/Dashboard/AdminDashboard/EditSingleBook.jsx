@@ -17,6 +17,7 @@ const EditSingleBook = () => {
         BookType,
         LastUpdate,
         Description,
+        ReadMore,
         _id
     } = bookData;
 
@@ -30,6 +31,7 @@ const EditSingleBook = () => {
         BookType,
         LastUpdate,
         Description,
+        ReadMore,
     });
 
     const handleChange = (e) => {
@@ -83,7 +85,6 @@ const EditSingleBook = () => {
 
     return (
         <div>
-
             <div style={backgroundImageStyle}>
                 <div className="flex flex-col" style={overlayStyle}>
                     <img className="h-48 w-36 rounded-xl border-2 border-white e" src={image} alt="" />
@@ -161,6 +162,18 @@ const EditSingleBook = () => {
                         <textarea
                             name="Description"
                             value={formData.Description}
+                            onChange={handleChange}
+                            className="textarea textarea-bordered h-40"
+                        ></textarea>
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">ReadMore:</span>
+                        </label>
+                        <textarea
+                            name="ReadMore"
+                            value={formData.ReadMore}
                             onChange={handleChange}
                             className="textarea textarea-bordered h-40"
                         ></textarea>

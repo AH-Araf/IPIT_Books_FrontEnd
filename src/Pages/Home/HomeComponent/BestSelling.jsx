@@ -37,7 +37,7 @@ const BestSelling = () => {
                     Array.from({ length: 3 }).map((_, index) => <SkeletonLoader key={index} />)
                 ) : (
                     latestBooks.map((book, index) => (
-                        <div key={book._id} className="border p-4 rounded-lg e bg-white h-[420px]">
+                        <div key={book._id} className="border p-4 rounded-lg e bg-white h-[440px]">
                             <img src={book.image} alt={book.bookName} className="w-full h-48 object-cover mb-4 rounded-lg" />
                             <div className='flex justify-between items-center'>
                                 <h3 className="text-lg font-bold mb-2">{book.bookName}</h3>

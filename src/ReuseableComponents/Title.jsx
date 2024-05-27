@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 const Title = ({ a, b }) => {
     return (
-        <div>
-            <h1 className={`text-center my-4 mt-10 font-bold text-2xl ${b === 'red' ? 'text-red-500' : 'text-emerald-400'}`}>
-                <span className={`w-96 e rounded-md ${b === 'red' ? 'bg-red-200' : 'bg-emerald-50'}  px-4`}>{a}</span>
+        <div className="w-full">
+            <h1 className={`text-center font-serif my-4 mt-10 font-bold lg:text-3xl ${b === 'red' ? 'text-black' : 'text-black'}`}>
+                <span className={` w-full ${b === 'red' ? 'bg-white' : 'bg-white'}  px-4`}>{a}</span>
             </h1>
         </div>
     );

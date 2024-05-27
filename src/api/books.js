@@ -81,3 +81,38 @@ export const updateBook = async (id, updatedBookDetails) => {
     }
 };
 
+export const fetchReviews = async (bookId, setReviews) => {
+    try {
+        const response = await fetch(`${API_URL}/userReview?bookId=${bookId}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setReviews(data);
+    } catch (error) {
+        console.error('Error fetching reviews:', error);
+    }
+};
+
+// Function to post a new review
+export const postReview = async (reviewDetails) => {
+    try {
+        const response = await fetch(`${API_URL}/review`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewDetails),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("Error posting review:", error);
+        throw error;
+    }
+};
