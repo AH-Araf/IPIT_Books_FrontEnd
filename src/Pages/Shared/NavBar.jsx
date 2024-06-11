@@ -11,6 +11,8 @@ const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [userData, setUserData] = useState([]);
 
+
+
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -118,7 +120,8 @@ const NavBar = () => {
                                 </div>
                             </div>
                         ) : (
-                            userData.length > 0 && (
+                                // userData.length > 0 &&
+                           userData.length > 0 && (
                                 <div className="avatar">
                                     <div className="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                         <img src={userData[0]?.image} alt="User" />
@@ -127,6 +130,36 @@ const NavBar = () => {
                             )
                         )
                     }
+
+                    {/* {
+                        user.photoURL ? (
+                            <div>
+                                <p>Image is coming from backend properly</p>
+                            </div>
+                        ): (
+                            <div>HTTPs connection has some issue</div>
+                        )
+                    } */}
+
+                    {/* {
+                        user?.photoURL ? (
+                            <div><img src={user?.photoURL} alt="" /></div>
+                        ):(
+                            <div>
+                                    <p>ok</p>
+                                    <img src={userData[0]?.image} alt="User" />
+                            </div>
+                        )
+                    } */}
+
+                  
+                            
+               
+                    
+
+
+
+
                 </div>
             </div>
         </div>

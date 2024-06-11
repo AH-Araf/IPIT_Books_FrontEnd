@@ -1,6 +1,7 @@
 import PhotoSwp from "../About/AboutComponent/PhotoSwp";
 import ContactCard from "../Contact/ContactCard";
 import BestSelling from "./HomeComponent/BestSelling";
+// import BookHover from "./HomeComponent/BookHover";
 import BookVideo from "./HomeComponent/BookVideo";
 import HomeFaq from "./HomeComponent/HomeFaq";
 import ImageHover from "./HomeComponent/ImageHover";
@@ -12,6 +13,7 @@ import Par from "./HomeComponent/Par";
 const Home = () => {
     return (
         <div>
+        {/* <BookHover/> */}
         <div>
             <BookVideo/>
         </div>
