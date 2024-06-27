@@ -61,7 +61,7 @@ const BookReview = ({ bookId, bookName, updateReviews }) => {
     return (
         <div>
             <div>
-                <p className="text-2xl font-serif mb-6 font-se">Book: {bookName}</p>
+                <p className="text-2xl font-serif mb-6 font-se">বই: {bookName}</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="flex mt-4 gap-2">
@@ -79,9 +79,9 @@ const BookReview = ({ bookId, bookName, updateReviews }) => {
                         />
                     </div>
                     {user ? (
-                        <div className="flex justify-center mt-10"><button className="btn btn-success" type="submit">Add Review</button></div>
+                        <div className="flex justify-center mt-10"><button className="btn btn-success" type="submit">যুক্ত করুন</button></div>
                     ) : (
-                        <p className="font-semibold text-red-600 mt-10">Please login to add a review.</p>
+                        <p className="font-semibold text-red-600 mt-10">রিভিউ যুক্ত করতে দয়া করে লগ-ইন করুন</p>
                     )}
                 </form>
             </div>

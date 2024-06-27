@@ -32,6 +32,7 @@ export default function PhotoSwp() {
         fetchAuthors();
     }, []);
 
+
     return (
         <div>
             <div>
@@ -60,7 +61,7 @@ export default function PhotoSwp() {
                         <div>
                             {apiBooks.map((book, index) => (
                                 <SwiperSlide key={index} className='hover:bg-emerald-100 e border-2 rounded-2xl border-slate-200'>
-                                    <Link to={`/book/${book._id}`} className="">
+                                    <Link to={`/book/${book._id}`} className="h-80">
                                         <div className="overlay-container">
                                             <img
                                                 className='rounded-xl'
@@ -73,8 +74,8 @@ export default function PhotoSwp() {
                                             </div>
                                         </div>
                                         <p className='font-bold'>{book.bookName}</p>
-                                        <p><span className='font-bold text-orange-600'>Type: </span>{book.BookType}</p>
-                                        <p><span className='font-bold text-orange-600'>Price: </span>{book.Price} Taka</p>
+                                        <p><span className='font-bold text-orange-600'><span className='text-sm'>বইয়ের ধরণ:</span> </span>{book.BookType}</p>
+                                        <p><span className='font-bold text-orange-600'><span className='text-sm'>মূল্য:</span> </span>{book.Price} Taka</p>
                                     </Link>
                                 </SwiperSlide>
                             ))}

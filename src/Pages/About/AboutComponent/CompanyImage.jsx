@@ -11,11 +11,11 @@ import './CompanyImage.css';
 
 const CompanyImage = () => {
     const stats = [
-        { value: 30000, label: 'Books', color: '#3e98c7' },
-        { value: 10000, label: 'Customers', color: '#ff6384' },
-        { value: 12000, label: 'Transactions', color: '#9932CC' },
-        { value: 1200, label: 'Shops', color: '#ff9f40' },
-        { value: 30000, label: 'Feedback', color: 'red' }
+        { value: 30000, label: 'বই', color: '#3e98c7' },
+        { value: 10000, label: 'কাস্টমার', color: '#ff6384' },
+        { value: 12000, label: 'ট্রান্সেকশন', color: '#9932CC' },
+        { value: 1200, label: 'শপস', color: '#ff9f40' },
+        { value: 30000, label: 'ফিডব্যাক', color: 'red' }
     ];
 
     const [isVisible, setIsVisible] = useState(false);
@@ -47,7 +47,7 @@ const CompanyImage = () => {
 
     return (
         <div  ref={sectionRef} className='mt-28 flex flex-col justify-center items-center'>
-            <Title a="Our Facilities" />
+            <Title a="আমাদের সেবা সমূহ" />
             <div className='lg:flex flex-wrap justify-center gap-20 mt-10'>
                 <div className='w-full  text-2xl p-bar  gap-20'>
                     {stats.map((stat, index) => (

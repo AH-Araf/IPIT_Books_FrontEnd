@@ -52,26 +52,27 @@ const NavBar = () => {
                 </button>
                 <img className='rounded-md w-8 h-8' src={logo} alt="Logo" />
                 <h1 className='text-2xl font-semibold'>
-                    <span className='text-red-700'>I</span>
-                    <span className='text-red-600'>P</span>
-                    <span className='text-red-500'>I</span>
-                    <span className='text-red-400'>T</span>
-                    <span className='text-red-400'> Books</span>
+                    <span className='text-red-800'>ই</span>
+                    <span className='text-red-600'>ত্যা</span>
+                    <span className='text-red-400'>দি</span>
+                    {/* <span className='text-red-400'>T</span> */}
+                    <span className='text-red-500'> শ</span>
+                    <span className='text-red-400'>প</span>
                 </h1>
             </div>
-            <div className='hidden md:flex gap-6 font-bold'>
-                <NavLink to='/' active={location.pathname === '/'}>Home</NavLink>
-                <NavLink to='/books' active={location.pathname === '/books' || location.pathname === '/book/:id'}>Books</NavLink>
-                <NavLink to='/about' active={location.pathname === '/about'}>About</NavLink>
-                <NavLink to='/contact' active={location.pathname === '/contact'}>Contact</NavLink>
+            <div className='hidden md:flex gap-6 text-sm  font-semibold'>
+                <NavLink to='/' active={location.pathname === '/'}>হোম</NavLink>
+                <NavLink to='/books' active={location.pathname === '/books' || location.pathname === '/book/:id'}>বই</NavLink>
+                <NavLink to='/about' active={location.pathname === '/about'}>আমাদের সম্পর্কে</NavLink>
+                <NavLink to='/contact' active={location.pathname === '/contact'}>যোগাযোগ</NavLink>
 
                 {
                     user ? <>
-                        <NavLink to="/dashboard/DashboardHome">Dashboard</NavLink>
-                        <NavLink><button onClick={handleLogOut}>LogOut</button></NavLink>
+                        <NavLink to="/dashboard/DashboardHome">ড্যাশবোর্ড</NavLink>
+                        <NavLink><button onClick={handleLogOut}>লগ-আউট</button></NavLink>
                     </> :
                         <>
-                            <NavLink to='/login' active={location.pathname === '/login' || location.pathname === '/pleaseLogin' || location.pathname === '/register'}>Login</NavLink>
+                            <NavLink to='/login' active={location.pathname === '/login' || location.pathname === '/pleaseLogin' || location.pathname === '/register'}>লগ-ইন</NavLink>
                         </>
                 }
             </div>
@@ -82,18 +83,18 @@ const NavBar = () => {
                     </svg>
                 </button>
                 <div className='flex flex-col gap-6 font-bold p-6'>
-                    <NavLink to='/' active={location.pathname === '/'} onClick={toggleMenu}>Home</NavLink>
-                    <NavLink to='/books' active={location.pathname === '/books' || location.pathname === '/book/:id'} onClick={toggleMenu}>Books</NavLink>
-                    <NavLink to='/about' active={location.pathname === '/about'} onClick={toggleMenu}>About</NavLink>
-                    <NavLink to='/contact' active={location.pathname === '/contact'} onClick={toggleMenu}>Contact</NavLink>
+                    <NavLink to='/' active={location.pathname === '/'} onClick={toggleMenu}>হোম</NavLink>
+                    <NavLink to='/books' active={location.pathname === '/books' || location.pathname === '/book/:id'} onClick={toggleMenu}>বই</NavLink>
+                    <NavLink to='/about' active={location.pathname === '/about'} onClick={toggleMenu}>আমাদের সম্পর্কে</NavLink>
+                    <NavLink to='/contact' active={location.pathname === '/contact'} onClick={toggleMenu}>যোগাযোগ</NavLink>
 
                     {
                         user ? <>
-                            <NavLink to="/dashboard/DashboardHome" onClick={toggleMenu}>Dashboard</NavLink>
-                            <NavLink><button onClick={handleLogOut}>LogOut</button></NavLink>
+                            <NavLink to="/dashboard/DashboardHome" onClick={toggleMenu}>ড্যাশবোর্ড</NavLink>
+                            <NavLink><button onClick={handleLogOut}>লগ-আউট</button></NavLink>
                         </> :
                             <>
-                                <NavLink to='/login' active={location.pathname === '/login' || location.pathname === '/pleaseLogin' || location.pathname === '/register'} onClick={toggleMenu}>Login</NavLink>
+                                <NavLink to='/login' active={location.pathname === '/login' || location.pathname === '/pleaseLogin' || location.pathname === '/register'} onClick={toggleMenu}>লগ-ইন</NavLink>
                             </>
                     }
                 </div>

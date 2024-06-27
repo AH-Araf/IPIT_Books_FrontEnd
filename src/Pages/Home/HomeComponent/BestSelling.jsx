@@ -42,17 +42,17 @@ const BestSelling = () => {
                             <div className='flex justify-between items-center'>
                                 <h3 className="text-lg font-bold mb-2">{book.bookName}</h3>
                                 <Link to={`/book/${book._id}`}>
-                                    <span className='e p-2 rounded-md font-bold text-red-600 hover:bg-red-100'>
-                                        View Details
+                                    <span className='e p-2 text-sm rounded-md font-bold text-red-600 hover:bg-red-100'>
+                                        ডিটেইলস দেখুন
                                     </span>
                                 </Link>
                             </div>
                             <p className="text-gray-600">{book.Writer}</p>
-                            <p className="text-gray-600">{`Price: $${book.Price}`}</p>
+                            <p className="text-gray-600">{`মূল্য: ${book.Price} টাকা`}</p>
                             <p className="text-gray-600">
                                 {book.showFullDescription ? book.Description : `${book.Description.slice(0, 25)}...`}
                                 <button className="text-blue-500 hover:underline focus:outline-none" onClick={() => toggleDescription(index)}>
-                                    {book.showFullDescription ? 'Read Less' : 'Read More'}
+                                    {book.showFullDescription ? '..ছোট করুন' : 'আরও পড়ুন'}
                                 </button>
                             </p>
                         </div>

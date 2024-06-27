@@ -1,3 +1,5 @@
+
+
 import Faq from "../../../ReuseableComponents/Faq";
 import Title from "../../../ReuseableComponents/Title";
 
@@ -9,33 +11,33 @@ const HomeFaq = () => {
             <div className="mt-10">
                 <div data-aos="fade-right">
                     <Faq
-                        q="What is IPIT Books?"
-                        a="IPIT Books is an online book-selling platform operated by IPIT Limited, offering a wide range of books across various genres, including fiction, non-fiction, academic, and more."
+                        q="ইত্যাদি শপ কি?"
+                        a="ইত্যাদি শপ হল আইপিআইটি লিমিটেড দ্বারা চালিত একটি অনলাইন বই-বিক্রি প্ল্যাটফর্ম, যা প্রায় সকল ধরণের বই, যেমন কথাসাহিত্য, অ-কথাসাহিত্য, একাডেমিক এবং অন্যান্য, উপলব্ধ করে।"
                     />
                 </div>
 
                 <div data-aos="fade-left">
                     <Faq
-                        q="How can I purchase books from IPIT Books?"
-                        a="To purchase books from IPIT Books, you can visit our website and browse through the available categories or use the search feature to find specific titles. Once you've selected the books you want to purchase, simply add them to your cart and proceed to checkout. You can then choose your preferred payment method and complete your purchase securely."
+                        q="আমি কিভাবে ইত্যাদি শপ থেকে বই কিনতে পারি?"
+                        a="ইত্যাদি শপ থেকে বই কিনতে, আপনি আমাদের ওয়েবসাইট দেখতে পারেন এবং উপলব্ধ বিভাগগুলির মধ্যে ব্রাউজ করতে পারেন বা নির্দিষ্ট শিরোনাম খুঁজতে অনুসন্ধান বৈশিষ্ট্য ব্যবহার করতে পারেন। আপনি যে বইগুলি কিনতে চান তা নির্বাচন করে আপনার কার্টে যোগ করুন এবং চেকআউটে অগ্রসর হোন। তারপরে আপনি আপনার পছন্দমত পেমেন্ট পদ্ধতি নির্বাচন করে আপনার কেনাকাটা সুরক্ষিতভাবে সম্পন্ন করতে পারেন।"
                     />
                 </div>
                 <div data-aos="fade-right">
                     <Faq
-                        q="Does IPIT Books offer international shipping?"
-                        a="Yes, IPIT Books offers international shipping to many countries worldwide. During the checkout process, you'll have the option to select your shipping destination, and shipping costs will be calculated based on your location."
+                        q="ইত্যাদি শপ কি আন্তর্জাতিক শিপিং প্রদান করে?"
+                        a="হাঁ, ইত্যাদি শপ বিশ্বব্যাপী অনেক দেশে আন্তর্জাতিক শিপিং প্রদান করে। চেকআউট প্রক্রিয়ার সময়, আপনার শিপিং গন্তব্য নির্বাচন করার অপশন থাকবে এবং আপনার অবস্থানের ভিত্তিতে শিপিং খরচ হিসাবে গণনা করা হবে।"
                     />
                 </div>
                 <div data-aos="fade-left">
                     <Faq
-                        q="Are the books on IPIT Books brand new or used?"
-                        a="The majority of books available on IPIT Books are brand new, unless otherwise specified. We take pride in offering high-quality, new books to our customers to ensure an enjoyable reading experience."
+                        q="ইত্যাদি শপ বইগুলি নতুন নাকি ব্যবহৃত?"
+                        a="ইত্যাদি শপে উপলব্ধ বইগুলির বৃহত্তরাংশ নতুন হয়, যদিও অন্যথায় উল্লিখিত না থাকলে। আমরা আমাদের গ্রাহকদেরকে আনন্দদায়ক পড়ার অভিজ্ঞতা নিশ্চিত করার জন্য উচ্চ মানের, নতুন বই অফার করায় গর্বিত।"
                     />
                 </div>
                 <div data-aos="fade-right">
                     <Faq
-                        q="Does IPIT Books offer any discounts or promotions?"
-                        a="Yes, IPIT Books frequently runs promotions and offers discounts on select books or during special occasions. Be sure to check our website regularly or subscribe to our newsletter to stay updated on the latest promotions and offers."
+                        q="ইত্যাদি শপ কি কোনও ছাড় বা প্রচার অফার করে?"
+                        a="হাঁ, ইত্যাদি শপ প্রায় সিলেক্ট বইগুলির উপর প্রচার চালায় এবং বিশেষ অফারে ছাড় দেয়। সর্বশেষ প্রচার এবং অফারে আপডেটে থাকতে সক্রিয় থাকুন আমাদের ওয়েবসাইট নিয়মিতভাবে চেক করুন বা সরাসরি আমাদের নিউজলেটারে সাবস্ক্রাইব করুন।"
                     />
                 </div>
             </div>

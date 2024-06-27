@@ -25,8 +25,8 @@ const ImageGallery = () => {
             </div>
 
             <div className="flex flex-col justify-center items-center lg:w-1/2">
-                <Title a="Image Gallery" />
-                <small className="w-96 text-justify  font-serif">IPIT Books is a premier online destination for book enthusiasts, offering a curated collection of literature across various genres. As a book selling website, IPIT Books prides itself on providing customers with a seamless shopping experience. </small>
+                <Title a="ইমেজ গ্যালারি" />
+                <small className="w-96 text-justify  font-serif">ইত্যাদি শপ একটি প্রাধান্যমূলক অনলাইন গন্তব্য বই প্রেমীদের জন্য, বিভিন্ন জাতের সাহিত্যের একটি পরিচালিত সংগ্রহ অনুষ্ঠিত করে। একটি বই বিক্রয় ওয়েবসাইট হিসাবে, ইত্যাদি শপ গ্রাহকদের একটি নিখুঁত কেনাকাটা অভিজ্ঞতা প্রদানে গর্ব করে।</small>
                 <AboutSwp />
             </div>
         </div>

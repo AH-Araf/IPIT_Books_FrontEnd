@@ -49,7 +49,7 @@ const ContactCard = () => {
             <div className='text-center'>
 
                 <div className='bg-white p-2 rounded-lg e flex flex-col justify-center items-center'>
-                    <p className='font-bold text-xl text-emerald-600 mb-2'>Contact Us</p>
+                    <p className='font-bold text-xl text-emerald-600 mb-2'>যোগাযোগ করুন</p>
                     <img className='h-56 w-56 rounded-lg' src={logo} alt="" />
 
                     <div className='flex justify-center items-center gap-5 my-2'>
@@ -67,35 +67,35 @@ const ContactCard = () => {
                     <form onSubmit={handleSubmit(handleAddMessage)}>
                         <section className="flex flex-col justify-center items-center mt-4">
                             <div className="">
-                                <label className=""> <span className="">Your Name</span></label> <br />
+                                <label className=""> <span className="text-sm font-semibold">আপনার নাম</span></label> <br />
                                 <textarea type="text" {...register("YourName", {
                                     required: "Required"
                                 })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
-                                <label className=""> <span className="">Phone Number</span></label> <br />
+                                <label className=""> <span className="text-sm font-semibold">ফোন নাম্বার</span></label> <br />
                                 <textarea type="text" {...register("PhoneNumber", {
                                     required: "Required"
                                 })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
-                                <label className=""> <span className="">Email</span></label> <br />
+                                <label className=""> <span className="text-sm font-semibold">ই-মেইল</span></label> <br />
                                 <textarea type="text" {...register("Email", {
                                     required: "Required"
                                 })} className="input border-2 border-slate-400  lg:w-96" />
                             </div>
 
                             <div className="">
-                                <label className=""> <span className="">Message</span></label> <br />
+                                <label className=""> <span className="text-sm font-semibold">ম্যাসেজ</span></label> <br />
                                 <textarea type="text" {...register("Message", {
                                     required: "Required"
                                 })} className="input border-2 border-slate-400  lg:w-96 h-20" />
                             </div>
                         </section>
                         <div className='flex justify-center'>
-                            <input className='btn btn-active btn-neutral w-40 mt-4 ' value="Sent" type="submit" />
+                            <input className='btn btn-active btn-neutral w-40 mt-4 ' value="ম্যাসেজ পাঠান" type="submit" />
                         </div>
                     </form>
                 </div>

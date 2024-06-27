@@ -32,7 +32,7 @@ const TransitionImage = () => {
 
     return (
         <div className="container mx-auto p-4 flex flex-col justify-center items-center">
-            <Title a="Our Latest Books" />
+            <Title a="আমাদের লেটেস্ট বই সমূহ" />
             <div className="flex justify-center items-center">
                 <div className="carousel carousel-center w-full">
                     {loading ? (

@@ -17,6 +17,7 @@ const SingleBook = () => {
     const [reviews, setReviews] = useState([]);
     const bookData = useLoaderData();
 
+
     const {
         bookName,
         image,
@@ -98,7 +99,7 @@ const SingleBook = () => {
             </div>
 
             <div className="flex justify-center e rounded-md p-1 items-center gap-3 lg:text-xl font-bold mx-6 my-1">
-                <p className="bg-slate-200 rounded-lg">Description:</p>
+                <p className="bg-slate-200 rounded-lg">বর্ণনা:</p>
                 <Marquee>
                     <p>{Description}</p>
                 </Marquee>
@@ -110,22 +111,22 @@ const SingleBook = () => {
                 </div>
                 <div className="w-[300px]">
                     <h2 className="text-3xl font-serif mt-3">{bookName}</h2>
-                    <p className="font-semibold text-green-500">Writer: {Writer}</p>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Price:</span> {Price} Taka/-</p>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Publishers:</span> {Publishers}</p>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Number of Pages:</span> {NumberofPage}</p>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Book Type:</span> {BookType}</p>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Last Update:</span> {LastUpdate}</p>
+                    <p className="font-semibold text-green-500"><span className='text-sm'>লেখক:</span> {Writer}</p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold"><span className='text-sm'>মূল্য:</span></span> {Price} টাকা/-</p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold"><span className='text-sm'>পাবলিশারস:</span></span> {Publishers}</p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold"><span className='text-sm'>পৃষ্ঠা সংখ্যা:</span></span> {NumberofPage}</p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold"><span className='text-sm'>বইয়ের ধরণ:</span></span> {BookType}</p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold"><span className='text-sm'>সর্বশেষ আপডেট:</span></span> {LastUpdate}</p>
                     <div className='mt-5'>
                         {user ? (
-                            <button className='e btn btn-error text-white text-lg' onClick={addToCart}>Add to Cart</button>
+                            <button className='e btn btn-error text-white text-md' onClick={addToCart}>কার্ট এ যুক্ত করুন</button>
                         ) : (
-                            <Link className='e btn btn-error text-white text-lg' to='/login'>Login to Buy</Link>
+                            <Link className='e btn btn-error text-white text-md' to='/login'>বই কিনতে লগ-ইন করুন</Link>
                         )}
                     </div>
                 </div>
                 <div>
-                    <p className="text-blue-500 font-bold"><span className="text-red-600 font-bold">Scan for Read:</span></p>
+                    <p className="text-blue-500 font-bold"><span className="text-red-600 text-sm font-semibold">আরও পড়তে স্ক্যান করুন:</span></p>
                     <div>
                         <QRCode style={{ height: "auto", maxWidth: "100%", width: "100%" }} className="e border-4 p-1 rounded-lg border-blue-300" value={ReadMore} />
                     </div>
@@ -137,8 +138,8 @@ const SingleBook = () => {
                     <div data-aos-duration="2000" data-aos="fade-right" className='a border-2 w-96 p-2 h-96 mt-10 overflow-auto '>
                         {reviews.length === 0 ? (
                             <div className="flex flex-col justify-center items-center mt-20">
-                                <p className='text-md font-bold text-red-500'>No Review Added</p>
-                                <p className='text-sm font-bold text-green-500'>Add First Comment</p>
+                                <p className='text-sm font-bold text-red-500'>কোন রিভিউ যুক্ত করা হয়নি</p>
+                                <p className='text-xs font-bold text-green-500'>প্রথম কমেন্ট যুক্ত করুন</p>
                             </div>
                         ) : (
                             reviews.map(review => (

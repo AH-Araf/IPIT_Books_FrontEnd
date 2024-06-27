@@ -1,0 +1,18 @@
+.btn-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ensure space is distributed between top and bottom elements */
+    height: 87%;
+    /* Ensure the container takes the full height available */
+}
+
+.btn-style>div:first-child {
+    margin-bottom: auto;
+    /* Push the first div to the top */
+}
+
+.btn-style>div:last-child {
+    margin-top: auto;
+    /* Push the second div to the bottom */
+}
